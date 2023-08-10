@@ -15,23 +15,21 @@ const tajawal = Tajawal({
 export default function Page() {
   const handleSearch = (query: string) => {
     // Perform search logic here using the query
-    console.log('Searching for:', query);
-  };
+    console.log('Searching for:', query)
+  }
   return (
-
-    <div className={` flex flex-col w-full ltr bg-white ${tajawal.variable} font-sans`} dir="rtl">
-       {/* SearchBar Component */}
+    <div className={`flex flex-col w-full ltr bg-white ${tajawal.variable} font-sans`} dir="rtl">
+      {/* SearchBar Component */}
       <SearchBar onSearch={handleSearch} />
-    
+
       {/* Header Component */}
       <Header />
-    
-   
+
       <Grid className="mb-16">
-    {/* content Component */}
-    <HomePageContent />
-    {/* Sidebar Component */}
-       <HomeSideBar />
+        {/* content Component */}
+        <HomePageContent />
+        {/* Sidebar Component */}
+        <HomeSideBar />
       </Grid>
     </div>
   )
