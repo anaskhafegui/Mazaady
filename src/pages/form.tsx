@@ -15,11 +15,6 @@ import {
   TableRow,
 } from '@mui/material'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
-
 interface Proparty {
   parent: number
   property: string
@@ -71,47 +66,49 @@ export default function Home() {
 
   return (
     <form onSubmit={onSubmit}>
-      <FormControl className={`flex flex-col items-center justify-between p-24 ${inter.variable}`}>
-        {/* Main Categorty Select */}
-        <SearchableSelect options={categories} onChange={onCategoryChange} label="Category" />
+      <FormControl sx={{ display: 'flex' }}>
+        <div className={`flex flex-col items-center justify-between p-24`}>
+          {/* Main Categorty Select */}
+          <SearchableSelect options={categories} onChange={onCategoryChange} label="Category" />
 
-        {/* Sub Category Select */}
-        {selectedCategory && (
-          <SearchableSelect
-            options={subCategories}
-            onChange={onSubCategoryChange}
-            label="Sub Category"
-            key={selectedCategory?.id}
-          />
-        )}
+          {/* Sub Category Select */}
+          {selectedCategory && (
+            <SearchableSelect
+              options={subCategories}
+              onChange={onSubCategoryChange}
+              label="Sub Category"
+              key={selectedCategory?.id}
+            />
+          )}
 
-        {/* Sub Category Proparties Select */}
-        {subCategoryProparties.map((property: Option) => (
-          <SubCategoryPropretySelect property={property} key={property.id} />
-        ))}
+          {/* Sub Category Proparties Select */}
+          {subCategoryProparties.map((property: Option) => (
+            <SubCategoryPropretySelect property={property} key={property.id} />
+          ))}
 
-        <Button variant="outlined" type="submit">
-          Submit
-        </Button>
+          <Button variant="outlined" type="submit">
+            Submit
+          </Button>
 
-        <TableContainer component={Paper} sx={{ width: 600, marginTop: 6 }}>
-          <Table sx={{ maxWidth: 650 }} size="small" aria-label="a dense table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="left">Property</TableCell>
-                <TableCell align="left">Value</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {Object.entries(selectedProparties).map(([proparty, value]) => (
-                <TableRow key={proparty}>
-                  <TableCell align="left">{proparty}</TableCell>
-                  <TableCell align="left">{value}</TableCell>
+          <TableContainer component={Paper} sx={{ width: 600, marginTop: 6 }}>
+            <Table sx={{ maxWidth: 650 }} size="small" aria-label="a dense table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="left">Property</TableCell>
+                  <TableCell align="left">Value</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {Object.entries(selectedProparties).map(([proparty, value]) => (
+                  <TableRow key={proparty}>
+                    <TableCell align="left">{proparty}</TableCell>
+                    <TableCell align="left">{value}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       </FormControl>
     </form>
   )
